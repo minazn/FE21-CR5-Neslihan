@@ -41,6 +41,9 @@ var Locations = /** @class */ (function () {
     return Locations;
 }());
 //creation of at least two Locations object
+new Locations("Vienna", 1010, "Karlsplatz 12", "image", "July 9, 2021, 16:47");
+new Locations("Linz", 4020, "Landstraße 62", "image", "July 9, 2021, 16:48");
+console.log(locations[0], locations[1]);
 var Restaurant = /** @class */ (function (_super) {
     __extends(Restaurant, _super);
     function Restaurant(city, zip_code, addr, img, creation_date, name, tel, type, homepage) {

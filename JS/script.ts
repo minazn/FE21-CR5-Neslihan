@@ -56,7 +56,9 @@ class Locations {
 }
 
 //creation of at least two Locations object
-
+new Locations("Vienna", 1010, "Karlsplatz 12", "image", "July 9, 2021, 16:47");
+new Locations("Linz", 4020, "Landstraße 62", "image", "July 9, 2021, 16:48");
+console.log(locations[0], locations[1]);
 
 class Restaurant extends Locations {
     name;
