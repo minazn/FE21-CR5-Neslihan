@@ -75,9 +75,10 @@ class Restaurant extends Locations {
     //the object. For dynamic solution, I could crate a table with type of cuisine, tel.nr and homepage. But
     //it does not look beautiful for me. That's why I decided to place the lorem ipsum text right here, so that
     //I don't always have to copy the whole text for each new object.
-    displayRestaurant() {
-        let card = super.display();
-        card +=
+
+    //If i want to add an event, the div won't be closed here
+    displayRestaurantWithEvent() {
+        let card = 
             `<div class="card-body pt-5">
         <h5 class="card-title">` + this.name + `</h5>
         <p class="card-text">Nunc molestie dignissim interdum. Nunc pretium convallis nulla, non vulputate nisi 
@@ -93,41 +94,66 @@ class Restaurant extends Locations {
         return card;
     }
 
-    addRestaurant() {
-        return this.displayRestaurant() + super.closeDiv();
+    //here I only add a Restaurant, without event
+    displayRestaurant() {
+
+        return super.display() + this.displayRestaurantWithEvent() + super.closeDiv();
     }
+
 }
 
+//I chose property day instead of date
 class Events extends Locations {
-    date;
+    title
+    day;
     time;
     ticket_price;
 
-    constructor(city, zip_code, addr, img, creation_date, date, time, ticket) {
+
+    constructor(city, zip_code, addr, img, creation_date, title, day, time, ticket, has_restaurant) {
         super(city, zip_code, addr, img, creation_date);
-        this.date = date;
+        this.title = title;
+        this.day = day;
         this.time = time;
         this.ticket_price = ticket;
+
         events.push(this);
     }
 
-    displayEvent() {
+    displayEventWithRestaurant(obj) {
+        let card =  super.display() + obj.displayRestaurantWithEvent() + `<hr><div class="card-body">
+        <h5 class="card-title">` + this.title +`</h5>
+        <h6>Opening Hours</h6>
+        <p class="card-text">` + this.day + `<br>`
+        + this.time +`<br>` + this.ticket_price +
+        `</p>
+    </div>` + super.closeDiv();
 
+        return card;
     }
+
+    displayEvent() {
+        let card =  super.display() + `<hr><div class="card-body">
+        <h5 class="card-title">` + this.title +`</h5>
+        <h6>Opening Hours</h6>
+        <p class="card-text">` + this.day + `<br>`
+        + this.time +`<br>` + this.ticket_price +
+        `</p>
+    </div>` + super.closeDiv();
+
+        return card;
+    }
+
+    
 }
 
 new Locations("wien", 1010, "Karlsplatz 12", "https://cdn.pixabay.com/photo/2010/11/29/angkor-wat-469__340.jpg", "December 17, 1997, 12:45");
 new Restaurant("wien", 1010, "Karlsplatz 12", "https://cdn.pixabay.com/photo/2010/11/29/angkor-wat-469__340.jpg", "December 17, 1997, 12:45", "Restaurant Name", 223421, "chinese", "www.abc.at");
+new Events("wien", 1010, "Karlsplatz 12", "https://cdn.pixabay.com/photo/2010/11/29/angkor-wat-469__340.jpg", "December 17, 1997, 12:45","Angkor Wat","Monday-Saturday","7:00 - 18:00","€30", true);
 
 
-console.log(locations[0]);
-
-document.getElementById("list-of-visits").innerHTML = restaurants[0].addRestaurant();
+// document.getElementById("list-of-visits").innerHTML = restaurants[0].displayRestaurant();
 // document.getElementById("list-of-visits").innerHTML = locations[0].addLocation();
+document.getElementById("list-of-visits").innerHTML =  events[0].displayEvent();
 
-// var x = new Date("24.03.2021 12:45");
-// var x = new Date("December 17, 1997, 12:45");
-// var y = new Date("December 17, 1995, 12:50");
-// var arr = [y,x];
-// console.log(arr.sort());
-// console.log(x.toLocaleDateString());
+

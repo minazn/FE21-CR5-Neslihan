@@ -56,39 +56,46 @@ var Restaurant = /** @class */ (function (_super) {
     //the object. For dynamic solution, I could crate a table with type of cuisine, tel.nr and homepage. But
     //it does not look beautiful for me. That's why I decided to place the lorem ipsum text right here, so that
     //I don't always have to copy the whole text for each new object.
-    Restaurant.prototype.displayRestaurant = function () {
-        var card = _super.prototype.display.call(this);
-        card +=
-            "<div class=\"card-body pt-5\">\n        <h5 class=\"card-title\">" + this.name + "</h5>\n        <p class=\"card-text\">Nunc molestie dignissim interdum. Nunc pretium convallis nulla, non vulputate nisi \n        vehicula ac. Nunc sit " + this.type_of_cuisine + " amet sollicitudin tortor. Donec blandit tortor vitae magna pharetra commodo. \n        Aliquam in laoreet mi. Fusce volutpat, est id tempor venenatis, lorem turpis consequat leo, id varius \n        erat augue finibus nisl. Etiam elit nisl, bibendum vitae venenatis eget, tempor sit amet nibh. Proin \n        gravida purus eu luctus cursus. In hac habitasse platea dictumst. Aenean pretium mauris vitae mauris \n        euismod hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos \n        himenaeos. Fusce bibendum tempor ante " + this.telephone_nr + ", eu egestas purus condimentum a " + this.homepage + ".\n            </p>\n             </div>";
+    //If i want to add an event, the div won't be closed here
+    Restaurant.prototype.displayRestaurantWithEvent = function () {
+        var card = "<div class=\"card-body pt-5\">\n        <h5 class=\"card-title\">" + this.name + "</h5>\n        <p class=\"card-text\">Nunc molestie dignissim interdum. Nunc pretium convallis nulla, non vulputate nisi \n        vehicula ac. Nunc sit " + this.type_of_cuisine + " amet sollicitudin tortor. Donec blandit tortor vitae magna pharetra commodo. \n        Aliquam in laoreet mi. Fusce volutpat, est id tempor venenatis, lorem turpis consequat leo, id varius \n        erat augue finibus nisl. Etiam elit nisl, bibendum vitae venenatis eget, tempor sit amet nibh. Proin \n        gravida purus eu luctus cursus. In hac habitasse platea dictumst. Aenean pretium mauris vitae mauris \n        euismod hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos \n        himenaeos. Fusce bibendum tempor ante " + this.telephone_nr + ", eu egestas purus condimentum a " + this.homepage + ".\n            </p>\n             </div>";
         return card;
     };
-    Restaurant.prototype.addRestaurant = function () {
-        return this.displayRestaurant() + _super.prototype.closeDiv.call(this);
+    //here I only add a Restaurant, without event
+    Restaurant.prototype.displayRestaurant = function () {
+        return _super.prototype.display.call(this) + this.displayRestaurantWithEvent() + _super.prototype.closeDiv.call(this);
     };
     return Restaurant;
 }(Locations));
+//I chose property day instead of date
 var Events = /** @class */ (function (_super) {
     __extends(Events, _super);
-    function Events(city, zip_code, addr, img, creation_date, date, time, ticket) {
+    function Events(city, zip_code, addr, img, creation_date, title, day, time, ticket, has_restaurant) {
         var _this = _super.call(this, city, zip_code, addr, img, creation_date) || this;
-        _this.date = date;
+        _this.title = title;
+        _this.day = day;
         _this.time = time;
         _this.ticket_price = ticket;
         events.push(_this);
         return _this;
     }
+    Events.prototype.displayEventWithRestaurant = function (obj) {
+        var card = _super.prototype.display.call(this) + obj.displayRestaurantWithEvent() + "<hr><div class=\"card-body\">\n        <h5 class=\"card-title\">" + this.title + "</h5>\n        <h6>Opening Hours</h6>\n        <p class=\"card-text\">" + this.day + "<br>"
+            + this.time + "<br>" + this.ticket_price +
+            "</p>\n    </div>" + _super.prototype.closeDiv.call(this);
+        return card;
+    };
     Events.prototype.displayEvent = function () {
+        var card = _super.prototype.display.call(this) + "<hr><div class=\"card-body\">\n        <h5 class=\"card-title\">" + this.title + "</h5>\n        <h6>Opening Hours</h6>\n        <p class=\"card-text\">" + this.day + "<br>"
+            + this.time + "<br>" + this.ticket_price +
+            "</p>\n    </div>" + _super.prototype.closeDiv.call(this);
+        return card;
     };
     return Events;
 }(Locations));
 new Locations("wien", 1010, "Karlsplatz 12", "https://cdn.pixabay.com/photo/2010/11/29/angkor-wat-469__340.jpg", "December 17, 1997, 12:45");
 new Restaurant("wien", 1010, "Karlsplatz 12", "https://cdn.pixabay.com/photo/2010/11/29/angkor-wat-469__340.jpg", "December 17, 1997, 12:45", "Restaurant Name", 223421, "chinese", "www.abc.at");
-console.log(locations[0]);
-document.getElementById("list-of-visits").innerHTML = restaurants[0].addRestaurant();
+new Events("wien", 1010, "Karlsplatz 12", "https://cdn.pixabay.com/photo/2010/11/29/angkor-wat-469__340.jpg", "December 17, 1997, 12:45", "Angkor Wat", "Monday-Saturday", "7:00 - 18:00", "€30", true);
+// document.getElementById("list-of-visits").innerHTML = restaurants[0].displayRestaurant();
 // document.getElementById("list-of-visits").innerHTML = locations[0].addLocation();
-// var x = new Date("24.03.2021 12:45");
-// var x = new Date("December 17, 1997, 12:45");
-// var y = new Date("December 17, 1995, 12:50");
-// var arr = [y,x];
-// console.log(arr.sort());
-// console.log(x.toLocaleDateString());
+document.getElementById("list-of-visits").innerHTML = events[0].displayEvent();
