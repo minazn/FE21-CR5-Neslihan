@@ -40,6 +40,7 @@ var Locations = /** @class */ (function () {
     };
     return Locations;
 }());
+//creation of at least two Locations object
 var Restaurant = /** @class */ (function (_super) {
     __extends(Restaurant, _super);
     function Restaurant(city, zip_code, addr, img, creation_date, name, tel, type, homepage) {
@@ -70,7 +71,7 @@ var Restaurant = /** @class */ (function (_super) {
 //I chose property day instead of date
 var Events = /** @class */ (function (_super) {
     __extends(Events, _super);
-    function Events(city, zip_code, addr, img, creation_date, title, day, time, ticket, has_restaurant) {
+    function Events(city, zip_code, addr, img, creation_date, title, day, time, ticket) {
         var _this = _super.call(this, city, zip_code, addr, img, creation_date) || this;
         _this.title = title;
         _this.day = day;
@@ -93,9 +94,14 @@ var Events = /** @class */ (function (_super) {
     };
     return Events;
 }(Locations));
-new Locations("wien", 1010, "Karlsplatz 12", "https://cdn.pixabay.com/photo/2010/11/29/angkor-wat-469__340.jpg", "December 17, 1997, 12:45");
-new Restaurant("wien", 1010, "Karlsplatz 12", "https://cdn.pixabay.com/photo/2010/11/29/angkor-wat-469__340.jpg", "December 17, 1997, 12:45", "Restaurant Name", 223421, "chinese", "www.abc.at");
-new Events("wien", 1010, "Karlsplatz 12", "https://cdn.pixabay.com/photo/2010/11/29/angkor-wat-469__340.jpg", "December 17, 1997, 12:45", "Angkor Wat", "Monday-Saturday", "7:00 - 18:00", "€30", true);
-// document.getElementById("list-of-visits").innerHTML = restaurants[0].displayRestaurant();
-// document.getElementById("list-of-visits").innerHTML = locations[0].addLocation();
-document.getElementById("list-of-visits").innerHTML = events[0].displayEvent();
+//I cannot see in the requirements, that we should consider a case for restaurant without event
+//so, I decided to give every restaurant an event, to keep it simple
+new Restaurant("Siem Reap", 1000, "Some Street 12", "https://cdn.pixabay.com/photo/2010/11/29/angkor-wat-469__340.jpg", "March 17, 2018, 12:45", "Restaurant Name", +223421, "khmer", "www.abc.com");
+new Events("Siem Reap", 1000, "Some Street 12", "https://cdn.pixabay.com/photo/2010/11/29/angkor-wat-469__340.jpg", "March 17, 2018, 12:45", "Angkor Wat", "Monday-Sunday", "7:00 - 18:00", "€30");
+new Restaurant("Kompong Chhnang", 1200, "Kompong Street 23", "https://cdn.pixabay.com/photo/2010/11/29/angkor-wat-469__340.jpg", "March 25, 2018, 15:17", "Restaurant Kompong", +240421, "khmer", "www.xyz.com");
+new Events("Kompong Chhnang", 1200, "Kompong Street 23", "https://cdn.pixabay.com/photo/2010/11/29/angkor-wat-469__340.jpg", "March 25, 2018, 15:17", "The Floating Villages", "Monday-Sunday", "10:00 - 17:00", "€20");
+new Restaurant("Phnom Penh", 1230, "PP Street 253", "https://cdn.pixabay.com/photo/2010/11/29/angkor-wat-469__340.jpg", "March 28, 2018, 15:17", "P&P", +223424, "khmer", "www.ppppp.com");
+new Events("Phnom Penh", 1230, "PP Street 253", "https://cdn.pixabay.com/photo/2010/11/29/angkor-wat-469__340.jpg", "March 28, 2018, 15:17", "Driving TukTuk", "Monday-Sunday", "everytime", "€10/day");
+for (var i = 0; i < restaurants.length; i++) {
+    document.getElementById("list-of-visits").innerHTML += events[i].displayEventWithRestaurant(restaurants[i]);
+}
