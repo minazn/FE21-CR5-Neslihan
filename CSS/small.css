@@ -1,0 +1,21 @@
+@media only screen and (max-width: 767px) {
+  #herosection img {
+    max-width: 30%;
+  }
+  #content {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #content .cambodia {
+    border-radius: 10% 10% 0 0 !important;
+    padding: 0 !important;
+  }
+  #content .cambodia .city {
+    font-size: 25px;
+  }
+  #content .cambodia img {
+    display: none;
+  }
+}
+/*# sourceMappingURL=small.css.map */

@@ -1,10 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Otomanopee+One&family=Ubuntu:wght@300&display=swap');
+
 @import url("large.css");
+@import url("medium.css");
+@import url("small.css");
 
 $geckocolor: #EDAE49;
+$bg-blue: #00798C;
 
-#herosection{
-    height: 150px;
-    background-color: #00798C;
-    color: wheat;
+body{
+    background-color: $bg-blue !important;
 
+    h2{
+        color: wheat;
+    }
+
+    #herosection{
+        height: 150px;
+        background-color: $bg-blue;
+        color: wheat;
+        font-family: 'Otomanopee One', sans-serif;
+
+    }
+
+    #sortButton{
+        color: $geckocolor !important;
+        background-color: $bg-blue;
+        border-radius: 0;
+        font-weight: bold;
+        font-family: 'Otomanopee One', sans-serif;
+    }
+
+    ul{
+        background-color: wheat !important;
+    }
+
+    #list-of-visits{
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .cambodia{
+        background-color: $geckocolor !important;
+
+        .city{
+            padding: 1em 0 1em 0;
+            color: $bg-blue;
+            font-weight: bold;
+            font-family: 'Otomanopee One', sans-serif;
+        }
+    }
+
+    #footer{
+        height: 100px;
+        background-color: $geckocolor;
+        border-radius: 50% 50% 0 0;
+    }
+   
 }

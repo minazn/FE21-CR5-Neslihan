@@ -1,7 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Otomanopee+One&family=Ubuntu:wght@300&display=swap");
 @import url("large.css");
-#herosection {
+@import url("medium.css");
+@import url("small.css");
+body {
+  background-color: #00798C !important;
+}
+
+body h2 {
+  color: wheat;
+}
+
+body #herosection {
   height: 150px;
   background-color: #00798C;
   color: wheat;
+  font-family: 'Otomanopee One', sans-serif;
+}
+
+body #sortButton {
+  color: #EDAE49 !important;
+  background-color: #00798C;
+  border-radius: 0;
+  font-weight: bold;
+  font-family: 'Otomanopee One', sans-serif;
+}
+
+body ul {
+  background-color: wheat !important;
+}
+
+body #list-of-visits {
+  max-width: 100%;
+  margin: 0;
+}
+
+body .cambodia {
+  background-color: #EDAE49 !important;
+}
+
+body .cambodia .city {
+  padding: 1em 0 1em 0;
+  color: #00798C;
+  font-weight: bold;
+  font-family: 'Otomanopee One', sans-serif;
+}
+
+body #footer {
+  height: 100px;
+  background-color: #EDAE49;
+  border-radius: 50% 50% 0 0;
 }
 /*# sourceMappingURL=style.css.map */

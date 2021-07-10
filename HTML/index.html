@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Typescript Day 2</title>
     <link rel="stylesheet" href="../CSS/style.css">
     <!-- Bootstrap -->
@@ -13,15 +14,34 @@
 
 <body>
     <!-- herosection -->
-    <div class="d-flex justify-content-between align-items-center ps-5 pe-5" id="herosection">
-        <h1>Welcome to my <br> Blog</h1>
-        <h1>Travel</h1>
+    <div class="d-flex justify-content-around align-items-center ps-5 pe-5" id="herosection">
+        <h1>Neslihans Travel Blog</h1>
         <img src="../IMG/gecko.svg" alt="Gecko">
     </div>
 
-    <!-- content -->
-    <div class="d-flex" id="list-of-visits">
+    <!-- Button -->
+    <div class="dropdown ps-5">
+        <button class="btn dropdown-toggle" type="button" id="sortButton" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Sort
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="sortButton">
+            <li><a class="dropdown-item" href="#" id="asc">ascending</a></li>
+            <li><a class="dropdown-item" href="#" id="desc">descending</a></li>
+        </ul>
+    </div>
 
+    <!-- content -->
+    <div id="content">
+           <div class="row justify-content-around" id="list-of-visits"></div>
+
+        <h2 class="text-center pt-5">My next destinations</h2>
+        <div class="row d-flex justify-content-around" id="next-visits"></div>
+    </div>
+
+    <!-- content -->
+    <div class="d-flex justify-content-center align-items-center mt-5" id="footer">
+        All rights reserved. Neslihan, 2021.
     </div>
 
 

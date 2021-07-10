@@ -1,4 +1,4 @@
-@media only screen and (min-width: 992px){
+@media only screen and (min-width: 1200px){
 
 #herosection{
     
@@ -6,5 +6,27 @@
         max-width: 10%;
     }
 }
+
+
+
+#content{
+
+
+    .cambodia{
+        padding-bottom: 2em;
+        border-radius: 20% !important;
+        // margin: 1px;
+
+        .city{
+            font-size: 25px;
+        }
+
+        img{
+            max-width: 100%;
+        }
+    }
+}
+
+
 
 }
